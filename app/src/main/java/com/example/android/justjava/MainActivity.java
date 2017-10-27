@@ -23,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(1);
-        displayPrice(2*5);
+        int numberOfCoffees = 2;
+        display(numberOfCoffees);
+        displayPrice(numberOfCoffees *5);
     }
 
     /**
@@ -35,11 +36,30 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
+    private void displayQuantity(int number) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + number);;
+    }
+
     /**
      * This method displays the given quantity value on the screen.
      */
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+    }
+
+    public void incrementQuantity(View view){
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        int currentQuantity =  Integer.parseInt(quantityTextView.getText().toString());
+        currentQuantity++;
+        displayQuantity(currentQuantity);
+    }
+
+    public void decrementQuantity(View view){
+        TextView quantityTextView =  findViewById(R.id.quantity_text_view);
+        int currentQuantity =  Integer.parseInt(quantityTextView.getText().toString());
+        currentQuantity--;
+        displayQuantity(currentQuantity);
     }
 }
