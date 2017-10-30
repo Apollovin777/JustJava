@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
-//import com.example.android.justjava.R;
+
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-
+    int quantity = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int numberOfCoffees = 2;
-        display(numberOfCoffees);
-        displayPrice(numberOfCoffees *5);
+        display(quantity);
+        displayPrice(quantity*5);
     }
 
     /**
@@ -36,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
-    private void displayQuantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);;
-    }
-
     /**
      * This method displays the given quantity value on the screen.
      */
@@ -49,17 +43,13 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    public void incrementQuantity(View view){
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        int currentQuantity =  Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity++;
-        displayQuantity(currentQuantity);
+    public void increment(View view){
+        quantity++;
+        display(quantity);
     }
 
-    public void decrementQuantity(View view){
-        TextView quantityTextView =  findViewById(R.id.quantity_text_view);
-        int currentQuantity =  Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity--;
-        displayQuantity(currentQuantity);
+    public void decrement(View view){
+        quantity--;
+        display(quantity);
     }
 }
